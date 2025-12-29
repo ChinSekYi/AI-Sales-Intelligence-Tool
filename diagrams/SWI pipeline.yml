@@ -1,0 +1,765 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#EFF1F5'
+  mode: workflow
+  name: SWI pipeline
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/gemini:0.6.4@17f286b2d6699a258a2eba8bc1bff71b8f795b6aa7bee1464cbfa450b451303a
+    version: null
+kind: app
+version: 0.5.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: template-transform
+      id: 1711529368293-source-1766049724498-target
+      selected: false
+      source: '1711529368293'
+      sourceHandle: source
+      target: '1766049724498'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: http-request
+      id: 1766049724498-source-1766046622949-target
+      selected: false
+      source: '1766049724498'
+      sourceHandle: source
+      target: '1766046622949'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: end
+      id: 1766046622949-source-1766048545709-target
+      selected: false
+      source: '1766046622949'
+      sourceHandle: source
+      target: '1766048545709'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1766046622949-source-17660507345060-target
+      selected: false
+      source: '1766046622949'
+      sourceHandle: source
+      target: '17660507345060'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 17660507345060-source-1766050853388-target
+      selected: false
+      source: '17660507345060'
+      sourceHandle: source
+      target: '1766050853388'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 17660507345060-source-1766108845329-target
+      selected: false
+      source: '17660507345060'
+      sourceHandle: source
+      target: '1766108845329'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1766108845329-source-1766052388937-target
+      source: '1766108845329'
+      sourceHandle: source
+      target: '1766052388937'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1766108845329-source-1766110489490-target
+      source: '1766108845329'
+      sourceHandle: source
+      target: '1766110489490'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1766110489490-source-1766110700930-target
+      source: '1766110489490'
+      sourceHandle: source
+      target: '1766110700930'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - default: (company OR startup OR firm OR corporation) AND (patent OR "intellectual
+            property" OR "IP portfolio" OR trademark) AND (granted OR filed OR awarded
+            OR secures)
+          label: news_query
+          max_length: 300
+          options: []
+          required: false
+          type: paragraph
+          variable: news_query
+        - default: general
+          hint: ''
+          label: news_category
+          max_length: 48
+          options:
+          - business
+          - entertainment
+          - general
+          - health
+          - science
+          - sports
+          - technology
+          placeholder: ''
+          required: false
+          type: select
+          variable: news_category
+        - default: Singapore
+          hint: ''
+          label: news_country
+          max_length: 48
+          options:
+          - Singapore
+          - China
+          - Japan
+          - United Kingdom
+          placeholder: ''
+          required: false
+          type: select
+          variable: news_country
+      dragging: false
+      height: 161
+      id: '1711529368293'
+      position:
+        x: -1286.6807572265957
+        y: 1114.8420097792791
+      positionAbsolute:
+        x: -1286.6807572265957
+        y: 1114.8420097792791
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: Dify
+        desc: ''
+        height: 101
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"","text":"Start
+          Node","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"","text":":","type":"text","version":1}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"textFormat":1,"value":2},{"children":[{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Variables
+          for various data sources","type":"text","version":1}],"direction":"ltr","format":"","indent":1,"type":"listitem","version":1,"value":1}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"bullet","start":1,"tag":"ul"}],"direction":"ltr","format":"start","indent":0,"type":"listitem","version":1,"value":3}],"direction":"ltr","format":"","indent":0,"type":"list","version":1,"listType":"number","start":2,"tag":"ol"}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 298
+      height: 101
+      id: '1718995081823'
+      position:
+        x: -1626.1441140237473
+        y: 1107.1345243908454
+      positionAbsolute:
+        x: -1626.1441140237473
+        y: 1107.1345243908454
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 298
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: fetch news via newsapi.get_everything + filter I (Remove noise based
+          on  keywords/regions)
+        headers: ''
+        method: get
+        params: 'q:{{#1766049724498.output#}}
+
+          from:2025-12-10
+
+          to:2025-12-17
+
+          sortBy:publishedAt
+
+          language:en
+
+          excludeDomains:arxiv.org,ieee.org,springer.com'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: fetch news + filter I
+        type: http-request
+        url: https://newsapi.org/v2/everything?apiKey=f78d261d2da54c24a49decdfb0a12d05
+        variables: []
+      height: 229
+      id: '1766046622949'
+      position:
+        x: -640.188839168228
+        y: 1135.8420097792791
+      positionAbsolute:
+        x: -640.188839168228
+        y: 1135.8420097792791
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: chinsekyi-patsnap
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"NEWSAPI","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: green
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1766048297372'
+      position:
+        x: -942.9331799737848
+        y: 1008.5790983722285
+      positionAbsolute:
+        x: -942.9331799737848
+        y: 1008.5790983722285
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        outputs:
+        - value_selector:
+          - '1766046622949'
+          - body
+          value_type: string
+          variable: output
+        selected: false
+        title: relevant leads
+        type: end
+      height: 88
+      id: '1766048545709'
+      position:
+        x: -285.22460417186124
+        y: 1472.120593703801
+      positionAbsolute:
+        x: -285.22460417186124
+        y: 1472.120593703801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        desc: Combine query part + country
+        selected: false
+        template: ({{keywords_query}}) AND {{news_country}}
+        title: combined_query
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1711529368293'
+          - news_query
+          value_type: string
+          variable: keywords_query
+        - value_selector:
+          - '1711529368293'
+          - news_country
+          value_type: string
+          variable: news_country
+      height: 80
+      id: '1766049724498'
+      position:
+        x: -942.9331799737848
+        y: 1135.8420097792791
+      positionAbsolute:
+        x: -942.9331799737848
+        y: 1135.8420097792791
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: chinsekyi-patsnap
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Ingestion
+          Layer","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1766050598876'
+      position:
+        x: -942.9331799737848
+        y: 900.5793178537906
+      positionAbsolute:
+        x: -942.9331799737848
+        y: 900.5793178537906
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: chinsekyi-patsnap
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Reasoning
+          Layer","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ' (1)'
+        type: ''
+        width: 240
+      height: 88
+      id: '17660506979940'
+      position:
+        x: -324.0671151310088
+        y: 906.9391672258138
+      positionAbsolute:
+        x: -324.0671151310088
+        y: 906.9391672258138
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1766046622949'
+          - body
+        desc: 'Filter II: Scoring Agent
+
+          Ranks leads based on quality '
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.5-flash
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 173569cf-1ba6-4d0b-a83e-5cf096b33473
+          role: system
+          text: '{{#context#}}
+
+            Role: You are a Senior Sales Intelligence Agent specializing in IP and
+            R&D signals for PatSnap.
+
+
+            Context: Your goal is to identify high-intent sales opportunities within
+            a specific geographic territory. High-intent signals include: new patent
+            filings, expansion into new technology areas, or recent R&D leadership
+            changes.
+
+
+            Target Region: {{#1711529368293.news_country#}}
+
+
+            Task: Analyze the following article results: {{#1766046622949.body#}}
+
+            1. Regional Filter: Only include articles where the primary company or
+            event is located within, headquartered in, or significantly impacting
+            the {{#1711529368293.news_country#}}.
+
+            2. Intent Filter: Discard articles that are purely general financial news
+            (e.g., stock price updates), generic marketing fluff, or general industry
+            overviews without a specific company focus.
+
+            3. PatSnap Value Match: Prioritize companies that appear to be increasing
+            their innovation output (R&D intensity), as they are the best fit for
+            PatSnap''s products.'
+        - id: 2a3d1363-db10-4e4b-a985-0e956109834e
+          role: user
+          text: 'Response format (JSON):
+
+            For each relevant article, provide:
+
+            - Company Name
+
+            - Region Status: (e.g., "HQ in {{#1711529368293.news_country#}}" or "Major
+            expansion in {{#1711529368293.news_country#}}")
+
+            - Signal Type (e.g., "New Patent," "Tech Expansion")
+
+            - Article published date & URL
+
+            - Relevance Score (1-10) (How likely is it they need IP intelligence?).
+
+            - Show the most important, short snippet of the article
+
+            '
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 1000
+        selected: false
+        title: Filter II
+        type: llm
+        vision:
+          enabled: false
+      height: 161
+      id: '17660507345060'
+      position:
+        x: -324.0671151310088
+        y: 1135.8420097792791
+      positionAbsolute:
+        x: -324.0671151310088
+        y: 1135.8420097792791
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs:
+        - value_selector:
+          - '17660507345060'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: high-priority leads
+        type: end
+      height: 88
+      id: '1766050853388'
+      position:
+        x: 17.774591145627426
+        y: 1472.120593703801
+      positionAbsolute:
+        x: 17.774591145627426
+        y: 1472.120593703801
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: chinsekyi-patsnap
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Synthesis
+          Layer","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: '  (2)'
+        type: ''
+        width: 240
+      height: 88
+      id: '17660510399720'
+      position:
+        x: 264.6146144974576
+        y: 912.3185743736692
+      positionAbsolute:
+        x: 264.6146144974576
+        y: 912.3185743736692
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        desc: A summary of key client information and relevant news
+        outputs:
+        - value_selector:
+          - '1766108845329'
+          - text
+          value_type: string
+          variable: text
+        selected: false
+        title: Deep Prospect Profile
+        type: end
+      height: 132
+      id: '1766052388937'
+      position:
+        x: 572.2742584105465
+        y: 1461.5151846752126
+      positionAbsolute:
+        x: 572.2742584105465
+        y: 1461.5151846752126
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: chinsekyi-patsnap
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Delivery
+          Layer","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: '  (3)'
+        type: ''
+        width: 240
+      height: 88
+      id: '17660534935590'
+      position:
+        x: 868.983764796941
+        y: 921.563129153352
+      positionAbsolute:
+        x: 868.983764796941
+        y: 921.563129153352
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '17660507345060'
+          - text
+        desc: Get all info for each client + their news/painpoints
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 4a10fab4-6647-4a2b-82c2-9d39d3d004d7
+          role: system
+          text: '{{#context#}}
+
+            # ROLE
+
+            You are a "Strategic Sales Engineer" at PatSnap. Your task is to analyze
+            high-priority leads {{#17660507345060.text#}} and synthesize a "Deep Prospect
+            Profile" that aligns recent company events with specific PatSnap product
+            value.
+
+
+            # OBJECTIVE
+
+            Produce a structured "Sales Battlecard" that provides a 360-degree view
+            of the prospect''s R&D health and creates a direct bridge to PatSnap''s
+            solutions (Discovery, Analytics, Eureka, or Life Sciences).
+
+
+            # ALIGNMENT LOGIC (THE "WHY NOW")
+
+            - If news mentions **New R&D Centers/Hiring**: Focus on "Tech Landscaping"
+            & "Competitive Intelligence."
+
+            - If news mentions **New Patent Filings/IP Growth**: Focus on "Portfolio
+            Management" & "FTO (Freedom to Operate)."
+
+            - If news mentions **Sustainability/New Materials**: Focus on the "Eureka"
+            material assistant and "Green Tech" landscapes.
+
+            - If news mentions **M&A or Funding**: Focus on "Valuation" & "Due Diligence."
+
+
+            # OUTPUT GUIDELINES
+
+            - Be analytical, not descriptive. Don''t just tell me they opened a lab;
+            tell me *why* that lab creates a sales opportunity for us.
+
+            - Identify the "Buyer Persona" based on the news type (e.g., if technical,
+            suggest the R&D Manager; if legal/litigation, suggest IP Counsel).'
+        - id: 06790081-e046-4540-a706-fac7c748fd50
+          role: user
+          text: "Using the provided news signals and firmographics for the company\
+            \ , generate a \"Deep Prospect Profile\" (Sales Battlecard).\n\nPlease\
+            \ extract and synthesize:\n1. **Strategic Profile**: A 2-sentence executive\
+            \ summary of the company's current momentum.\n2. **Key Contact Persona**:\
+            \ Who should we talk to? (e.g., Head of Innovation, IP Counsel, or CTO).\
+            \ List their likely top priority right now based on the news.\n3. **Patent/R&D\
+            \ Context**: What is the 'Technical Trigger'? (e.g., \"Rapid expansion\
+            \ into Solid State Batteries\").\n4. **The PatSnap Alignment Table**:\n\
+            \   | Current Event | PatSnap Value Proposition | The \"Conversation Opener\"\
+            \ |\n   | :--- | :--- | :--- |\n   | [Event from News] | [Specific Feature/Benefit]\
+            \ | [A powerful question for the rep to ask] |\n\n5. **Risk & Competitive\
+            \ Intel**: One thing the rep should be aware of before calling (e.g.,\
+            \ a major competitor's recent move)."
+        selected: false
+        structured_output_enabled: true
+        title: Summarise Info
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: '1766108845329'
+      position:
+        x: 264.6146144974576
+        y: 1137.0980771003187
+      positionAbsolute:
+        x: 264.6146144974576
+        y: 1137.0980771003187
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: Draft emails, linked msg, meeting script based on client profile
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-2.0-flash-001
+          provider: langgenius/gemini/google
+        prompt_template:
+        - id: 5b4b6658-67d1-4381-884f-b9f1325a47f7
+          role: system
+          text: "# Context\nYou are a copy writer for the sales team. You have to\
+            \ prepare the 3 items below to prepare sales team to do outreach to potential\
+            \ clients. \n\nItems to prepare:\n- Cold email\n- LinkedIn Message\n-\
+            \ Meeting script\n\nEach of the items above needs to be customised based\
+            \ on the client profile. "
+        selected: false
+        structured_output_enabled: true
+        title: Copywriter
+        type: llm
+        vision:
+          enabled: false
+      height: 132
+      id: '1766110489490'
+      position:
+        x: 868.983764796941
+        y: 1135.8420097792791
+      positionAbsolute:
+        x: 868.983764796941
+        y: 1135.8420097792791
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        outputs: []
+        selected: false
+        title: Output 4
+        type: end
+      height: 52
+      id: '1766110700930'
+      position:
+        x: 1169.5812859687483
+        y: 1135.8420097792791
+      positionAbsolute:
+        x: 1169.5812859687483
+        y: 1135.8420097792791
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 758.0535262796797
+      y: -64.13177842078335
+      zoom: 0.25
+  rag_pipeline_variables: []
